@@ -1,17 +1,55 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { Home, Dashboard, Create } from './components';
+import './styles.css'
+
+// Import From react-router-dom
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { SpotifyService } from './services/spotify.service';
+
+
+class AuthRoute extends React.Component<{}, { isAuth: boolean }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { isAuth: false };
+  }
+
+  componentDidMount() {
+    if (!window.location.hash) {
+      SpotifyService.authenticate();
+    } else {
+      const token = window.location.hash.substr(14).split('&')[0];
+      localStorage.setItem('spotifyToken', token);
+    }
+  }
+
+  render() {
+    return (
+      <React.StrictMode>
+        <Router>
+          <Switch>
+
+            <Route exact path='/'>
+              <Home title={'One List'} />
+            </Route>
+
+            <Route path='/create'>
+              <Create></Create>
+            </Route>
+
+            <Route path='/dashboard'>
+              <Dashboard></Dashboard>
+            </Route>
+
+          </Switch>
+        </Router>
+      </React.StrictMode>
+    )
+  }
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <AuthRoute />,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

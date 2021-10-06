@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import fellowship from '../../assets/images/fellowship.jpg';
-import { handleLogin } from '../../api';
 
 interface Props{
     title: string;

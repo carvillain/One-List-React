@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 
 
 //Spotify Client Credentials
-const clientId = 'ac59367a537f4b5390274fa35a5280eb';
-const clientSecret = "17017d459846452c84d23996c4f030ad";
+
 
 var current_token = localStorage.getItem('spotifyToken');
 

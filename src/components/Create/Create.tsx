@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-    searchGenre, searchTrack, searchAlbum, getGenres, recommendations, user, createPlaylist,
-    GetPlaylists, addToPlaylist, getAlbumTracks
-} from "../../api";
+import {searchGenre, searchTrack, searchAlbum, recommendations, createPlaylist, addToPlaylist, getAlbumTracks} from "../../api";
 import { Header } from "..";
 import { SongTable } from "..";
 
